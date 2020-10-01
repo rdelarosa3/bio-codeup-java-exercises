@@ -5,7 +5,6 @@ public class ConsoleExercises {
     public static void main(String[] args) {
         double pi = 3.14159;
         System.out.printf("The value of pi is approximately %.2f %n",pi);
-
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter three words: ");
         String userInput = scanner.next();
@@ -40,7 +39,7 @@ public class ConsoleExercises {
             }
             scanner.nextLine();
         }
-        
+
         while(width == 0){
             System.out.print("Enter a Width: ");
             boolean hasNextDouble = scanner.hasNextDouble();
@@ -56,8 +55,6 @@ public class ConsoleExercises {
             System.out.println("Area: " + length * width );
             System.out.println("Perimeter: " + (2*length + 2*width));
         }
-        scanner.close();
-        
     }
 }
                                                       
