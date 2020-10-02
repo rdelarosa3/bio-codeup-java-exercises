@@ -1,4 +1,3 @@
-import javax.imageio.plugins.tiff.TIFFImageReadParam;
 import java.util.Scanner;
 
 public class ControlFlowExercises {
@@ -10,24 +9,24 @@ public class ControlFlowExercises {
         System.out.println(ANSI_YELLOW+"1a While"+ANSI_RESET);
         int i = 5;
         while (i <= 15){
-            System.out.println(i);
+            System.out.print(i + " ");
             i++;
         }
-
         /* 1b DO WHILE */
+        System.out.println("");
         System.out.println(ANSI_YELLOW+"1b Do While"+ANSI_RESET);
-        System.out.println(ANSI_PURPLE+"  1b FIRST:"+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+" 1b FIRST:"+ANSI_RESET);
         i = 0;
         do {
            i += 2;
-            System.out.println(i);
+           System.out.println(i);
         }while (i<100);
-        System.out.println(ANSI_PURPLE+"  1b SECOND:"+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+" 1b SECOND:"+ANSI_RESET);
         do {
-            i-=5;
             System.out.println(i);
-        }while (i>-10);
-        System.out.println(ANSI_PURPLE+"  1b THIRD:"+ANSI_RESET);
+            i-=5;
+        }while (i>=-10);
+        System.out.println(ANSI_PURPLE+" 1b THIRD:"+ANSI_RESET);
         long j = 2L;
         do {
             System.out.println(j);
@@ -40,15 +39,15 @@ public class ControlFlowExercises {
         for (long k = 2L; k < 1000000; k*=k) {
             System.out.println(k);
         }
-        System.out.println(ANSI_PURPLE+"  1c SECOND:"+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+" 1c SECOND:"+ANSI_RESET);
         for (int k = 5; k <= 15 ; k++) {
             System.out.println(k);
         }
-        System.out.println(ANSI_PURPLE+"  1c THIRD:"+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+" 1c THIRD:"+ANSI_RESET);
         for (int k = 0; k < 100 ; k+=2) {
             System.out.println(k);
         }
-        System.out.println(ANSI_PURPLE+"  1c FOURTH:"+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+" 1c FOURTH:"+ANSI_RESET);
         for (int k = 100; k >=-10 ; k-=5) {
             System.out.println(k);
         }
@@ -56,12 +55,14 @@ public class ControlFlowExercises {
         /* 2. FIZZBUZZ */
         System.out.println(ANSI_GREEN+ "2. FIZZBUZZ EXERCISE"+ANSI_RESET);
         for (int k = 0; k <= 100 ; k++) {
-            if ((k % 3 == 0) && (k % 5 == 0)){
+            if ((k % 15 == 0)){
                 System.out.println(ANSI_BLACK+"FizzBuzz"+ANSI_RESET);
             }else if(k % 5 == 0){
                 System.out.println(ANSI_WHITE+"Buzz"+ANSI_RESET);
             }else if(k % 3 == 0){
                 System.out.println(ANSI_CYAN+"Fizz"+ANSI_RESET);
+            }else{
+                System.out.println(k);
             }
         }
 
@@ -76,7 +77,7 @@ public class ControlFlowExercises {
                 userInput = tableScanner.nextInt();
                 if(userInput >=0){
                     // continue asking user to continue until yes or no reply
-                    while(true){
+                    do{
                         System.out.println(ANSI_BLUE+"Continue? [Y/n]"+ANSI_RESET);
                         Scanner sc = new Scanner(System.in);
                         String userResponse = sc.nextLine();
@@ -100,7 +101,7 @@ public class ControlFlowExercises {
                         else if(userResponse.toLowerCase().startsWith("n")){
                             break;
                         }
-                    }
+                    }while(true);
                 }
             } else {
                 System.out.println(ANSI_RED + "Invalid Input" + ANSI_RESET);
@@ -119,20 +120,20 @@ public class ControlFlowExercises {
             if (hasNextInt) {
                 grade = gradeScanner.nextInt();
                 if(grade >= 0 && grade <=100){
-                    while(true) {
+                    do {
                         System.out.println(ANSI_BLUE+"Continue? [Y/n]"+ANSI_RESET);
                         Scanner sc = new Scanner(System.in);
                         String userResponse = sc.nextLine();
                         if (userResponse.toLowerCase().startsWith("y")) {
                             if (grade > 98 && grade < 101) {
                                 System.out.println("A+");
-                            } else if (grade >= 88 && grade < 99) {
+                            } else if (grade >87 && grade < 99) {
                                 System.out.println("A");
-                            } else if (grade >= 79 && grade < 88) {
+                            } else if (grade >78 && grade < 88) {
                                 System.out.println("B");
-                            } else if (grade >= 67 && grade < 79) {
+                            } else if (grade >66 && grade < 79) {
                                 System.out.println("C");
-                            } else if (grade >= 60 && grade < 67) {
+                            } else if (grade >59 && grade < 67) {
                                 System.out.println("D");
                             } else {
                                 System.out.println("F");
@@ -142,7 +143,7 @@ public class ControlFlowExercises {
                         else if(userResponse.toLowerCase().startsWith("n")){
                             break;
                         }
-                    }
+                    }while(true);
                 }
             } else {
                 System.out.println(ANSI_RED + "Invalid Input" + ANSI_RESET);
