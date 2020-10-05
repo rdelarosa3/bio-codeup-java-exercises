@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MethodExercises {
+public class MethodsExercises {
     public static void main(String[] args) {
         boolean wantsFactorial = true;
         do{
@@ -64,7 +64,7 @@ public class MethodExercises {
     }
 
     public static int rollDice(int max){
-        return (int)(Math.random() * max - 1 + 1) + 1;
+        return (int)Math.floor(Math.random() * max);
     }
 
     public static boolean askContinue(){
