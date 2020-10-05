@@ -29,15 +29,10 @@ public class MethodExercises {
 
     public static int getInteger(int min, int max) {
         System.out.printf(ANSI_YELLOW + "Enter a number between %s and %s: " + ANSI_RESET, min, max);
-        int number = 0;
         int userNumber = getIntInput();
-        if (userNumber >= min && userNumber <= max) {
-            number = userNumber;
-        } else {
-            System.out.println(ANSI_RED + "Number out of range" + ANSI_RESET);
-            return getInteger(min, max);
-        }
-        return number;
+        if (userNumber >= min && userNumber <= max) return userNumber;
+        System.out.println(ANSI_RED + "Number out of range" + ANSI_RESET);
+        return getInteger(min, max);
     }
 
     public static int getFactorial(int num) {
