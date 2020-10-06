@@ -11,10 +11,10 @@ public class Input {
     public static boolean yesNo(){
         System.out.println("Continue? [Y/n]");
         String userResponse = scanner.nextLine();
-        if (userResponse.toLowerCase().startsWith("y")){
+        if (userResponse.trim().toLowerCase().startsWith("y")){
             return true;
         }
-        else if(userResponse.toLowerCase().startsWith("n")){
+        else if(userResponse.trim().toLowerCase().startsWith("n")){
             return false;
         }
         System.out.println(ANSI_RED+"Enter a correct value: "+ANSI_RESET);

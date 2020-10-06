@@ -26,6 +26,6 @@ public class Person {
     }
     public void sayHello(){
     //TODO: print a message to the console using the person's name
-        System.out.println("Hi my name is "+this.name);
+        System.out.println("Hi my name is " + this.name);
     }
 }
