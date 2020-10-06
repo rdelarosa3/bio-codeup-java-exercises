@@ -75,26 +75,26 @@ public class ConsoleColors {
     public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
 
     //info
-    public static void i(String message) {
-        System.out.println(ANSI_GREEN + message + ANSI_RESET);
+    public static String i(String message) {
+        return ANSI_GREEN + message + ANSI_RESET;
     }
     //error
-    public static void e(String message) {
-        System.out.println(ANSI_RED + message + ANSI_RESET);
+    public static String e(String message) {
+        return ANSI_RED + message + ANSI_RESET;
     }
 
     //debug
-    public static void d(String message) {
-        System.out.println(ANSI_BLUE + message + ANSI_RESET);
+    public static String d(String message) {
+        return ANSI_BLUE + message + ANSI_RESET;
     }
 
     //warning
-    public static void w(String message) {
-        System.out.println(ANSI_YELLOW + message + ANSI_RESET);
+    public static String w(String message) {
+        return ANSI_YELLOW + message + ANSI_RESET;
     }
 
     //any color select
-    public static void a(String color, String message){
-        System.out.println(color + message + ANSI_RESET);
+    public static String a(String color, String message){
+        return color + message + ANSI_RESET;
     }
 }

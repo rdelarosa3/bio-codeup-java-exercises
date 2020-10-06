@@ -2,15 +2,14 @@ package util;
 import java.util.Scanner;
 
 public class Input {
-    private Scanner scanner;
-    public String getString(){
-        this.scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static String getString(){
         System.out.println("Type a string");
         return scanner.nextLine();
     }
-    public boolean yesNo(){
+    public static boolean yesNo(){
         System.out.println("Continue? [Y/n]");
-        this.scanner = new Scanner(System.in);
         String userResponse = scanner.nextLine();
         if (userResponse.toLowerCase().startsWith("y")){
             return true;
@@ -22,7 +21,18 @@ public class Input {
         return yesNo();
     }
 
-    public int getInt(int min, int max){
+    public static int getInt(){
+        boolean hasNextInt = scanner.hasNextInt();
+        if (hasNextInt) {
+            return scanner.nextInt();
+        }else{
+            System.out.println(ANSI_RED+"Enter a correct value: "+ANSI_RESET);
+            scanner =  new Scanner(System.in);
+            return getInt();
+        }
+    }
+
+    public static int getInt(int min, int max){
         System.out.printf("Enter a number between %s and %s: ", min, max);
         int userNumber = getInt();
         if (userNumber >= min && userNumber <= max){
@@ -32,8 +42,18 @@ public class Input {
             return getInt(min, max);
         }
     }
+    public static double getDouble(){
+        boolean hasNextDouble = scanner.hasNextDouble();
+        if (hasNextDouble) {
+            return scanner.nextDouble();
+        }else{
+            System.out.println(ANSI_RED+"Enter a correct value: "+ANSI_RESET);
+            scanner = new Scanner(System.in);
+            return getDouble();
+        }
+    }
 
-    public double getDouble(double min, double max){
+    public static double getDouble(double min, double max){
         System.out.printf("Enter a float number between %s and %s: ", min, max);
         double userNumber = getDouble();
         if (userNumber >= min && userNumber <= max){
@@ -42,29 +62,8 @@ public class Input {
             System.out.println(ANSI_RED+"Number out of range"+ANSI_RESET);
             return getDouble(min, max);
         }
+    }
 
-    }
-    public double getDouble(){
-        this.scanner = new Scanner(System.in);
-        boolean hasNextDouble = scanner.hasNextDouble();
-        if (hasNextDouble) {
-            return scanner.nextDouble();
-        }else{
-            System.out.println(ANSI_RED+"Enter a correct value: "+ANSI_RESET);
-            return getDouble();
-        }
-
-    }
-    public int getInt(){
-        this.scanner = new Scanner(System.in);
-        boolean hasNextInt = scanner.hasNextInt();
-        if (hasNextInt) {
-            return scanner.nextInt();
-        }else{
-            System.out.println(ANSI_RED+"Enter a correct value: "+ANSI_RESET);
-            return getInt();
-        }
-    }
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
 }
