@@ -2,13 +2,15 @@ package util;
 import java.util.Scanner;
 
 public class Input {
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner;
 
     public static String getString(){
+        scanner = new Scanner(System.in);
         System.out.println("Type a string");
         return scanner.nextLine();
     }
     public static boolean yesNo(){
+        scanner = new Scanner(System.in);
         System.out.println("Continue? [Y/n]");
         String userResponse = scanner.nextLine();
         if (userResponse.trim().toLowerCase().startsWith("y")){
@@ -22,6 +24,7 @@ public class Input {
     }
 
     public static int getInt(){
+        scanner = new Scanner(System.in);
         boolean hasNextInt = scanner.hasNextInt();
         if (hasNextInt) {
             return scanner.nextInt();
@@ -33,6 +36,7 @@ public class Input {
     }
 
     public static int getInt(int min, int max){
+        scanner = new Scanner(System.in);
         System.out.printf("Enter a number between %s and %s: ", min, max);
         int userNumber = getInt();
         if (userNumber >= min && userNumber <= max){
@@ -43,6 +47,7 @@ public class Input {
         }
     }
     public static double getDouble(){
+        scanner = new Scanner(System.in);
         boolean hasNextDouble = scanner.hasNextDouble();
         if (hasNextDouble) {
             return scanner.nextDouble();
@@ -54,6 +59,7 @@ public class Input {
     }
 
     public static double getDouble(double min, double max){
+        scanner = new Scanner(System.in);
         System.out.printf("Enter a float number between %s and %s: ", min, max);
         double userNumber = getDouble();
         if (userNumber >= min && userNumber <= max){
