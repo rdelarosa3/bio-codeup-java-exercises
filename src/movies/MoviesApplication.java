@@ -6,22 +6,16 @@ import java.util.Arrays;
 public class MoviesApplication {
     
     public static void main(String[] args) {
-        boolean continueSearch = true;
         do{
             printMenu();
-            Movie[] movies = getMenuInput();
-            if (movies.length > 0 ){
-                printMovies(movies);
-            }else{
-                break;
-            }
+            if(!getMenuInput()) break;
             System.out.println("Search another Category?");
-            continueSearch = Input.yesNo();
-        }while (continueSearch);
+        }while (true);
         System.out.println(ConsoleColors.e("Closing Program....."));
     }
-    private static Movie[] movieDb = MoviesArray.findAll();
 
+    // VARIABLES
+    private static Movie[] movieDb = MoviesArray.findAll();
     private static final String[] menuItems = {
             "exit",
             "view all movies",
@@ -31,7 +25,6 @@ public class MoviesApplication {
             "view movies in the scifi category",
             "add movie to database"
     };
-
     private static final String[] movieCatergories = {
             "animated",
             "drama",
@@ -39,6 +32,7 @@ public class MoviesApplication {
             "scifi"
     };
 
+    // METHODS
     public static void printMenu(){
         System.out.println(ConsoleColors.w("What would you like to do?"));
         for (int i = 0; i < menuItems.length; i++) {
@@ -49,13 +43,16 @@ public class MoviesApplication {
     public static String getMovieCreateCategory(){
         String chosenCategory = "";
         System.out.println(ConsoleColors.w("Choose a category: "));
+        // print list of categories
         for (int i = 0; i < movieCatergories.length; i++) {
             System.out.println(ConsoleColors.d(i + " - " + movieCatergories[i]));
         }
+        // get input from user
         int userInput = Input.getInt();
         if (userInput > movieCatergories.length -1 || userInput < 0){
             return getMovieCreateCategory();
         }
+        // return the string of the chosen category;
         for (int i = 0; i < movieCatergories.length ; i++) {
             if(userInput == i){
                 chosenCategory = movieCatergories[i];
@@ -64,49 +61,47 @@ public class MoviesApplication {
         return chosenCategory;
     }
 
-    public static Movie[] getMenuInput(){
+    public static boolean getMenuInput(){
         System.out.println(ConsoleColors.w("Enter your choice: "));
+        // validate user input
         int userInput = Input.getInt();
-        if(userInput <0 || userInput > 6){
-            return getMenuInput();
-        }else if(userInput == 6){
-            addToDatabase();
-            printMenu();
-            return getMenuInput();
-        }
+        if(userInput <0 || userInput > 6) getMenuInput();
         switch (userInput){
+            case 0:
+                return false;
             case 1:
-                return movieDb;
+                filterMovies(movieDb,"all");
+                break;
             case 2:
-                return filterMovies(movieDb,"animated");
+                filterMovies(movieDb,"animated");
+                break;
             case 3:
-                return filterMovies(movieDb,"drama");
+                filterMovies(movieDb,"drama");
+                break;
             case 4:
-                return filterMovies(movieDb,"horror");
+                filterMovies(movieDb,"horror");
+                break;
             case 5:
-                return filterMovies(movieDb,"scifi");
+                filterMovies(movieDb,"scifi");
+                break;
+            case 6:
+                addToDatabase();
+                break;
             default:
                 break;
         }
-        return filterMovies(movieDb,"");
+        return true;
     }
 
-    public static Movie[] filterMovies(Movie[] movieList, String theCategory){
-        int arrayLength = 0;
+    public static void filterMovies(Movie[] movieList, String theCategory){
         for (Movie movie : movieList){
-            if(movie.getCategory().toLowerCase().equals(theCategory)){
-                arrayLength++;
+            if(theCategory == "all"){
+                System.out.printf("%s -- %s\n", movie.getName(),movie.getCategory());
+            }
+            else if(movie.getCategory().toLowerCase().equals(theCategory)){
+                System.out.printf("%s -- %s\n", movie.getName(),movie.getCategory());
             }
         }
-        Movie[] filteredMovies = new Movie[arrayLength];
-        arrayLength = 0;
-        for (Movie movie : movieList){
-            if(movie.getCategory().toLowerCase().equals(theCategory)){
-                filteredMovies[arrayLength] = movie;
-                arrayLength++;
-            }
-        }
-        return filteredMovies;
     }
 
     public static void printMovies(Movie[] moviesToPrint){
@@ -124,8 +119,11 @@ public class MoviesApplication {
     public static void addToDatabase(){
         System.out.println(ConsoleColors.d("Current database size = " + movieDb.length));
         System.out.println(ConsoleColors.w("Enter Movie Name: "));
+        // get name of movie
         String movieTitle = Input.getString();
+        // get string of category
         String movieCategory = getMovieCreateCategory();
+        // adds movie to db
         addMovie(movieDb, movieTitle, movieCategory);
         System.out.println(ConsoleColors.a(ConsoleColors.RED_BOLD_BRIGHT, movieTitle + " added to database."));
         System.out.println(ConsoleColors.d("Updated database size = " + movieDb.length));

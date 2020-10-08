@@ -6,12 +6,11 @@ public class Input {
 
     public static String getString(){
         scanner = new Scanner(System.in);
-        System.out.println("Type a string");
         return scanner.nextLine();
     }
     public static boolean yesNo(){
         scanner = new Scanner(System.in);
-        System.out.println("Continue? [Y/n]");
+        System.out.println(ANSI_YELLOW+"Continue? [Y/n]"+ANSI_RESET);
         String userResponse = scanner.nextLine();
         if (userResponse.trim().toLowerCase().startsWith("y")){
             return true;
@@ -72,4 +71,5 @@ public class Input {
 
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_YELLOW = "\033[0;33m";
 }

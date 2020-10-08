@@ -25,10 +25,13 @@ public class ServerNameGenerator {
     };
 
     public static String randomString(String[] array){
+//        Random rnd = new Random();
+//        return array[rnd.nextInt(array.length)];
         return array[(int)Math.floor(Math.random() * array.length)-1];
     }
 
     public static void main(String[] args) {
-        System.out.println("Here is your server name:\n"+randomString(adj).toLowerCase() + "-" + randomString(noun).toLowerCase());
+        System.out.println("Here is your server name:\n"+randomString(adj).toLowerCase() +
+                "-" + randomString(noun).toLowerCase());
     }
 }
