@@ -4,23 +4,25 @@ public class Movie {
     private String name;
     private String category;
 
-    public Movie(String theName, String theCategory){
-        this.name = theName;
-        this.category = theCategory;
+    public Movie(String name, String category) {
+        this.name = name;
+        this.category = category;
     }
-    // Getters
-    public String getName(){
+
+    public String getName() {
         return this.name;
     }
-    public String getCategory(){
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
         return this.category;
     }
 
-    // Setters
-    public void setName(String theName){
-         this.name = theName;
+    public void setCategory(String category) {
+        this.category = category;
     }
-    public void setCategory(String theCategory){
-         this.category = theCategory;
-    }
+
 }

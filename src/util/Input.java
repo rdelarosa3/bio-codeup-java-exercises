@@ -36,12 +36,11 @@ public class Input {
 
     public static int getInt(int min, int max){
         scanner = new Scanner(System.in);
-        System.out.printf("Enter a number between %s and %s: ", min, max);
         int userNumber = getInt();
         if (userNumber >= min && userNumber <= max){
             return userNumber;
         }else{
-            System.out.println(ANSI_RED+"Number out of range"+ANSI_RESET);
+            System.out.printf(ANSI_RED+"Enter a number between %s and %s: "+ANSI_RESET, min, max);
             return getInt(min, max);
         }
     }
@@ -59,12 +58,12 @@ public class Input {
 
     public static double getDouble(double min, double max){
         scanner = new Scanner(System.in);
-        System.out.printf("Enter a float number between %s and %s: ", min, max);
         double userNumber = getDouble();
         if (userNumber >= min && userNumber <= max){
             return userNumber;
         }else{
-            System.out.println(ANSI_RED+"Number out of range"+ANSI_RESET);
+            System.out.printf(ANSI_RED+"Enter a float number between %s and %s: "+ANSI_RESET, min, max);
+            scanner = new Scanner(System.in);
             return getDouble(min, max);
         }
     }

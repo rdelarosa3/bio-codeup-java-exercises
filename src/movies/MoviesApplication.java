@@ -47,12 +47,8 @@ public class MoviesApplication {
         for (int i = 0; i < movieCatergories.length; i++) {
             System.out.println(ConsoleColors.d(i + " - " + movieCatergories[i]));
         }
-        // get input from user
-        int userInput = Input.getInt();
-        if (userInput > movieCatergories.length -1 || userInput < 0){
-            return getMovieCreateCategory();
-        }
-        // return the string of the chosen category;
+        // get input from user return the string of the chosen category
+        int userInput = Input.getInt(0,movieCatergories.length -1);
         for (int i = 0; i < movieCatergories.length ; i++) {
             if(userInput == i){
                 chosenCategory = movieCatergories[i];
@@ -64,9 +60,7 @@ public class MoviesApplication {
     public static boolean getMenuInput(){
         System.out.println(ConsoleColors.w("Enter your choice: "));
         // validate user input
-        int userInput = Input.getInt();
-        if(userInput <0 || userInput > 6) getMenuInput();
-        switch (userInput){
+        switch (Input.getInt(0,6)){
             case 0:
                 return false;
             case 1:
@@ -98,15 +92,9 @@ public class MoviesApplication {
             if(theCategory == "all"){
                 System.out.printf("%s -- %s\n", movie.getName(),movie.getCategory());
             }
-            else if(movie.getCategory().toLowerCase().equals(theCategory)){
+            else if(movie.getCategory().equalsIgnoreCase(theCategory)){
                 System.out.printf("%s -- %s\n", movie.getName(),movie.getCategory());
             }
-        }
-    }
-
-    public static void printMovies(Movie[] moviesToPrint){
-        for (Movie movie : moviesToPrint){
-            System.out.printf("%s -- %s\n", movie.getName(),movie.getCategory());
         }
     }
 
