@@ -61,7 +61,7 @@ public class GroceryList{
         System.out.println("\t 3- To modify an item in the list");
         System.out.println("\t 4- To remove item from list");
         System.out.println("\t 5- To search for an item in the list");
-        System.out.println("\t 6- To finalize list");
+        System.out.println("\t 6- To Exit");
     }
 
     public static void createCategories(){
@@ -79,14 +79,15 @@ public class GroceryList{
     }
 
     public static String categorySelect(){
-        int count = 0;
+        int count = 1;
         TreeMap<String, ArrayList<GroceryItems>> sortedList = new TreeMap<>(groceryList);
         for (String k : sortedList.keySet()){
             System.out.printf("%d. %s%n",count,k);
             count++;
         }
         System.out.println("Select Category");
-        return categories.get(Input.getInt(0,categories.size()-1));
+        int selection = Input.getInt(1,categories.size()) - 1;
+        return categories.get(selection);
     }
     public static void addItem(String category){
         System.out.printf("Enter %s Name: %n",category);
@@ -123,14 +124,23 @@ public class GroceryList{
         printTable(category);
         printSortedItems(groceryList.get(category));
         System.out.println("Enter Item to remove");
-/*      collections way of doing without for loop  */
-//      groceryList.get(category).removeIf(item -> item.getName().equalsIgnoreCase(Input.getString()));
+        String userInput = Input.getString();
         for(GroceryItems item : groceryList.get(category)){
-            if (item.getName().equalsIgnoreCase(Input.getString())){
-                groceryList.get(category).remove(item);
+            if (item.getName().equalsIgnoreCase(userInput)){
                 System.out.println("Item removed");
             }
         }
+/*      collections way of doing without for loop  */
+        groceryList.get(category).removeIf(item -> item.getName().equalsIgnoreCase(userInput));
+
+        // ? why does this not work
+//        for(GroceryItems item : groceryList.get(category)){
+//            if (item.getName().equalsIgnoreCase(userInput)){
+//                groceryList.get(category).remove(item);
+//                System.out.println("Item removed");
+//            }
+//        }
+
     }
 
     public static void printTable(String category){
