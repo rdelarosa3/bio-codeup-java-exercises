@@ -10,7 +10,7 @@ public class Input {
     }
     public static boolean yesNo(){
         scanner = new Scanner(System.in);
-        System.out.println(ANSI_YELLOW+"Continue? [Y/n]"+ANSI_RESET);
+        System.out.println(ANSI_YELLOW+"[Y/n]"+ANSI_RESET);
         String userResponse = scanner.nextLine();
         if (userResponse.trim().toLowerCase().startsWith("y")){
             return true;
